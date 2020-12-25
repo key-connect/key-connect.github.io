@@ -85,7 +85,8 @@
 								{% elsif site.dox.header.logo.image or page.logo %}
 									<div class="c-logo">
 										<a href="{% if jekyll.environment == 'production' %}{{ site.dox.baseurl }}{% endif %}/" class="c-logo__link">
-											<img src="{% if jekyll.environment == 'production' %}{{ site.dox.baseurl }}{% endif %}/theme/assets/images/layout/{% if page.logo %}{{page.logo}}{% else %}logo.png{% endif %}" width="140">
+											<img src="{% if jekyll.environment == 'production' %}{{ site.dox.baseurl }}{% endif %}/theme/assets/images/layout/{% if page.logo %}{{page.logo}}{% else %}logo.png{% endif %}" width="65">
+											<span class="u-mt-1">KeyConnect</span>
 										</a><!-- /.c-logo__link -->
 									</div><!-- /.c-logo -->
 								{% endif %}

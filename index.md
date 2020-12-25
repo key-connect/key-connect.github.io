@@ -7,7 +7,7 @@ keywords: blockchain api btc bitcoin ethereum eth ether xrp ledger # Define keyw
 
 # Hero section
 hero:
-    title: KeyConnect
+    title: Access all Blockchains from a single place
     text: KeyConnect API provides a decentralised single point of access to all blockchains.
     background_image: # Paste image URL to display image in background of hero section
     buttons: 

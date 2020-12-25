@@ -9,8 +9,6 @@ dox:
             text: #
             image: logo.png
         nav:
-            - item_name: Homepage
-              item_url: /
             - item_name: SDK
               item_url: /sdk
             - item_name: Server

@@ -1,14 +1,14 @@
 ---
 # Page settings
-logo: logo-dark.png
+logo: logo.png
 layout: section
-title: KeyConnect SDK # Define a title of your page
-description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sed justo diam. Suspendisse gravida lacinia eros a finibus. Fusce interdum ex nec leo sodales, pharetra scelerisque est dapibus. # Define a description of your page
-keywords: # Define keywords for search engines
+title: KeyConnect SDK
+description: KeyConnect SDK provides integration with KeyConnect API Server, a single gateway to access BTC, ETH and XRP blockchains.
+keywords: sdk blockchain eth api xrpl bitcoin btc ether
 button: 
     label: Get Started
-    url: /documentation
-    external_url: false
+    url: https://www.keyconnect.app/api-docs/index.html
+    external_url: true
     style: bordered
     icon: play-circle
 

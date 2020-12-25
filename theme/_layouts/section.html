@@ -9,9 +9,10 @@
 						<h1 class="u-text-lg u-text-xl@sm">{{ page.title }}</h1>
 					{% endif %}
 					{% if page.description %}
-						<div class="u-h6">
-							<p>{{ page.description }}</p>
-						</div>
+            <img align="right" src="{% if jekyll.environment == 'production' %}{{ site.dox.baseurl }}{% endif %}/theme/assets/images/layout/{{ page.image }}" alt="" title="" width="120" />
+            <div class="u-h6">
+              <p>{{ page.description }}</p>
+            </div>
           {% endif %}
           <a href="{{ page.button.url }}" class="c-btn c-btn--bordered-gray c-btn--lg u-h6 u-mr-1 u-mb-2">
             {{ page.button.label }}
