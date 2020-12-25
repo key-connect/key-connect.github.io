@@ -17,8 +17,9 @@ dox:
               item_url: /server
         cta:
             label: Documentation
-            url: /api-docs/index.html
-            icon: book-open # Choose from 266 icons in "Feather" icon set, list of all icons is available here - https://feathericons.com
+            url: https://www.keyconnect.app/api-docs/index.html
+            external_url: true
+            icon: book-open 
     footer:
         logo:
             text: KeyConnect

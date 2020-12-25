@@ -18,8 +18,8 @@ hero:
           style: bordered
           icon: github
         - label: Explore API
-          url: /api-docs/index.html
-          external_url: false
+          url: https://www.keyconnect.app/api-docs/index.html
+          external_url: true
           style: filled
           icon: book-open
     download_link: # Set small download link placed below buttons
