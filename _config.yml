@@ -1,6 +1,6 @@
 # Theme settings
 dox:
-    baseurl:
+    baseurl: https://key-connect.github.io/website
     title: KeyConnect
     theme_color: '#282840' # Define theme primary color with HEX value
     language: en-GB # Use ISO language and country codes to setup language of your website - https://www.w3schools.com/tags/ref_language_codes.asp and https://www.w3schools.com/tags/ref_country_codes.asp
