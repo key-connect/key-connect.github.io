@@ -1,0 +1,42 @@
+{% include header.html %}
+
+{% if page.title or page.description %}
+	<div class="u-bg-gray-30 u-pt-16 u-pb-10">
+		<div class="o-container">
+			<div class="o-row">
+				<div class="o-col-11@lg o-col-7@xl u-mx-auto@xl">
+					{% if page.title %}
+						<h1 class="u-text-lg u-text-xl@sm">{{ page.title }}</h1>
+					{% endif %}
+					{% if page.description %}
+						<div class="u-h6">
+							<p>{{ page.description }}</p>
+						</div>
+          {% endif %}
+          <a href="{{ page.button.url }}" class="c-btn c-btn--bordered-gray c-btn--lg u-h6 u-mr-1 u-mb-2">
+            {{ page.button.label }}
+            <div class="c-btn__icon">
+              <i class="o-icon o-icon--{{ page.button.icon }}"></i>
+            </div>
+          </a>
+				</div><!-- /.o-col -->
+			</div><!-- /.o-row -->
+		</div><!-- /.o-container -->
+	</div>
+{% endif %}
+
+{% if page.section %}
+<div class="u-bg-gray-30 u-pb-4">
+	<div class="o-container">
+				<div class="o-row">
+					<div class="o-col u-mr-auto">
+						{{ page.section.html }}
+					</div>
+				</div>
+	</div>
+</div>
+{% endif %}
+
+{% include footer.html bordered=true %}
+
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert"></script>

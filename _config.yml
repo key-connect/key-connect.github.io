@@ -1,0 +1,55 @@
+# Theme settings
+dox:
+    baseurl:
+    title: KeyConnect
+    theme_color: '#282840' # Define theme primary color with HEX value
+    language: en-GB # Use ISO language and country codes to setup language of your website - https://www.w3schools.com/tags/ref_language_codes.asp and https://www.w3schools.com/tags/ref_country_codes.asp
+    header:
+        logo:
+            text: #
+            image: logo.png
+        nav:
+            - item_name: Homepage
+              item_url: /
+            - item_name: SDK
+              item_url: /sdk
+            - item_name: Server
+              item_url: /server
+        cta:
+            label: Documentation
+            url: /api-docs/index.html
+            icon: book-open # Choose from 266 icons in "Feather" icon set, list of all icons is available here - https://feathericons.com
+    footer:
+        logo:
+            text: KeyConnect
+            image:
+        text: Copyright &copy; 2021. - KeyConnect <br>All rights reserved.
+    google_analytics:
+        tracking_code: # Add your Google Analytics tracking code to activate Google Analytics
+    comments:
+        disqus_forum_shortname: # Add your Disqus forum shortname to activate comments site-wide
+
+# Defining collections
+collections:
+    documentation:
+        output: true
+
+# Defining defaults
+defaults:
+    -
+        scope:
+            path: ''
+            type: 'documentation'
+        values:
+            layout: 'documentation-single'
+
+# SASS settings
+sass:
+    sass_dir: ./theme/_sass
+    style: :compressed
+
+# Jekyll settings
+layouts_dir: ./theme/_layouts
+includes_dir: ./theme/_includes
+exclude: [ 'README.md', 'CHANGELOG.md' ]
+permalink: /:title/

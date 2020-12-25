@@ -1,0 +1,14 @@
+<div class="o-container">
+  <div class="o-row">
+    <div class="o-col-10@lg o-col-8@xl o-offset-1@lg u-mb-4 u-mt-3 u-mr-auto">
+      {{page.images-horizontal-list.title}}
+    </div>
+  </div>
+  <div class="o-row o-justify-content-md-center">
+    <div class="o-col u-mb-3 u-mt-3 u-ml-3">
+      {% for item in page.images-horizontal-list.list %}
+        <img width="150" title="{{item.title}}" class="u-ml-6" src="{% if jekyll.environment == 'production' %}{{ site.dox.baseurl }}{% endif %}/theme/assets/images/layout/{{item.image}}" />
+      {% endfor %}
+      </div>
+  </div>
+</div>
