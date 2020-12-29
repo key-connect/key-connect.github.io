@@ -5,6 +5,11 @@ layout: section
 title: KeyConnect SDK
 description: KeyConnect SDK provides integration with KeyConnect API Server, a single gateway to access BTC, ETH and XRP blockchains.
 keywords: sdk blockchain eth api xrpl bitcoin btc ether
+ogTitle: KeyConnect - SDK
+ogDescription: KeyConnect SDK provides integration with KeyConnect API Server, a single gateway to access BTC, ETH and XRP blockchains.
+ogImage: og_sdk.png
+ogUrl: /sdk
+
 button: 
     label: Get Started
     url: https://www.keyconnect.app/api-docs/index.html

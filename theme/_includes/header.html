@@ -37,6 +37,11 @@
 		<link rel="mask-icon" href="{% if jekyll.environment == 'production' %}{{ site.dox.baseurl }}{% endif %}//safari-pinned-tab.svg" color="#5bbad5">
 		<meta name="msapplication-TileColor" content="#da532c">
 		<meta name="theme-color" content="#ffffff">
+		<meta property="og:title" content="{{ page.ogTitle }}" /> 
+		<meta property="og:description" content="{{ page.ogDescription }}"/>
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="{% if jekyll.environment == 'production' %}{{ site.dox.baseurl }}{% endif %}{{ page.ogUrl }}" />
+		<meta property="og:image" content="{% if jekyll.environment == 'production' %}{{ site.dox.baseurl }}/{% endif %}img/{{ page.ogImage }}" />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|IBM+Plex+Sans:400,400i,500,500i,700,700i">
 		<link rel="stylesheet" href="{% if jekyll.environment == 'production' %}{{ site.dox.baseurl }}{% endif %}/theme/assets/css/style.css">
 	</head>
