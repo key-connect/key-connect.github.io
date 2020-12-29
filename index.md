@@ -24,7 +24,7 @@ hero:
           icon: book-open
     download_link: # Set small download link placed below buttons
         label: Download — v0.1.0
-        url: https://example.com
+        url: https://keyconnect.app
 
 images-horizontal-list:
     title: Usage
