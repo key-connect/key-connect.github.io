@@ -157,29 +157,34 @@ h={};g()}};typeof define==="function"&&define.amd&&define("google-code-prettify"
     });
 
     function findNode(id, currentNode) {
-        return (Object.keys(currentNode)[0] === id) ? currentNode : findNodeInChildren(id, currentNode);
-    }
+        var currentChild,
+            result;
 
-    function findNodeInChildren(id, currentNode) {
-        for (let prop in currentNode) {
-            if (currentNode.hasOwnProperty(prop)) {
-                let currentChild = currentNode[prop];
-                if (id === prop) {
-                    return currentChild;
-                } else {
-                    // Search in the current child
-                    if (typeof (currentChild) === 'object') {
-                        let result = findNode(id, currentChild);
-                        if (result !== false) {
-                            return result;
+        if ( Object.keys(currentNode)[0] == id) {
+            return currentNode;
+        } else {
+            // Use a for loop instead of forEach to avoid nested functions
+            // Otherwise "return" will not work properly
+            for(var propt in currentNode){
+                if (currentNode.hasOwnProperty(propt)) {
+                    currentChild = currentNode[propt]
+                    if (id == propt) {
+                        return currentChild;
+                    } else {
+                        // Search in the current child
+                        if (typeof(currentChild) === 'object') {
+                            result = findNode(id, currentChild);
+                            if (result != false) {
+                                return result;
+                            }
                         }
                     }
                 }
             }
+            // The node has not been found and we have no more options
+           return false;
         }
-        return false;
     }
-
   </script>
   <style type="text/css">
     @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
@@ -1154,6 +1159,7 @@ ul.nav-tabs {
   }
 };
     defs["ServerStatusResponse_errors"] = {
+  "type" : "object",
   "properties" : {
     "category" : {
       "type" : "string",
@@ -1305,7 +1311,9 @@ ul.nav-tabs {
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Default-generateTransaction-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://api.keyconnect.com/v1/blockchains/xrp/generator/payment?sourceAccount=&destinationAccount=&destinationTag=&amount=&fee=&network="</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Accept: application/json"\
+ "https://api.keyconnect.app/v1/blockchains/xrp/generator/payment?sourceAccount=&destinationAccount=&destinationTag=&amount=&fee=&network="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-generateTransaction-0-java">
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
@@ -1317,9 +1325,9 @@ import java.io.File;
 import java.util.*;
 
 public class DefaultApiExample {
-
     public static void main(String[] args) {
         
+        // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
         String sourceAccount = rPT1Sjq2YGrBMTttX4GZHjKu9dyfzbpAYe; // String | Source account
         String destinationAccount = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; // String | Destination account
@@ -1327,6 +1335,7 @@ public class DefaultApiExample {
         BigDecimal destinationTag = 58871619; // BigDecimal | Destination tag
         String fee = 5200; // String | Fee to the ledger in drops. If this field is omitted, then `network` must be specified.
         String network = testnet; // String |  Blockchain network to get the account info from. For XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint. This field is required if `fee` is not specified in order to dynamically obtain the fee from the network. 
+        
         try {
             Object result = apiInstance.generateTransaction(sourceAccount, destinationAccount, amount, destinationTag, fee, network);
             System.out.println(result);
@@ -1343,7 +1352,6 @@ public class DefaultApiExample {
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
 
 public class DefaultApiExample {
-
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
         String sourceAccount = rPT1Sjq2YGrBMTttX4GZHjKu9dyfzbpAYe; // String | Source account
@@ -1352,6 +1360,7 @@ public class DefaultApiExample {
         BigDecimal destinationTag = 58871619; // BigDecimal | Destination tag
         String fee = 5200; // String | Fee to the ledger in drops. If this field is omitted, then `network` must be specified.
         String network = testnet; // String |  Blockchain network to get the account info from. For XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint. This field is required if `fee` is not specified in order to dynamically obtain the fee from the network. 
+        
         try {
             Object result = apiInstance.generateTransaction(sourceAccount, destinationAccount, amount, destinationTag, fee, network);
             System.out.println(result);
@@ -1367,14 +1376,16 @@ public class DefaultApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Default-generateTransaction-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *sourceAccount = rPT1Sjq2YGrBMTttX4GZHjKu9dyfzbpAYe; // Source account (default to null)
+                              <pre class="prettyprint"><code class="language-cpp">
+
+// Create an instance of the API class
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+String *sourceAccount = rPT1Sjq2YGrBMTttX4GZHjKu9dyfzbpAYe; // Source account (default to null)
 String *destinationAccount = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; // Destination account (default to null)
 String *amount = 10000000; // Payment amount in drops (default to null)
 BigDecimal *destinationTag = 58871619; // Destination tag (optional) (default to null)
 String *fee = 5200; // Fee to the ledger in drops. If this field is omitted, then `network` must be specified. (optional) (default to null)
 String *network = testnet; //  Blockchain network to get the account info from. For XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint. This field is required if `fee` is not specified in order to dynamically obtain the fee from the network.  (optional) (default to mainnet)
-
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Generate a transaction
 [apiInstance generateTransactionWith:sourceAccount
@@ -1384,19 +1395,20 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
     fee:fee
     network:network
               completionHandler: ^(Object output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
 </code></pre>
                             </div>
 
                             <div class="tab-pane" id="examples-Default-generateTransaction-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var KeyConnectApi = require('key_connect_api');
 
+// Create an instance of the API class
 var api = new KeyConnectApi.DefaultApi()
 var sourceAccount = rPT1Sjq2YGrBMTttX4GZHjKu9dyfzbpAYe; // {String} Source account
 var destinationAccount = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; // {String} Destination account
@@ -1424,9 +1436,9 @@ api.generateTransaction(sourceAccount, destinationAccount, amount, opts, callbac
                             <div class="tab-pane" id="examples-Default-generateTransaction-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using Com.Turinglabs.Keyconnect.Api.Client.Api;
-using Com.Turinglabs.Keyconnect.Api.Client.Client;
-using Com.Turinglabs.Keyconnect.Api.Client.Model;
+using app.keyconnect.Api.Client.Api;
+using app.keyconnect.Api.Client.Client;
+using app.keyconnect.Api.Client.Model;
 
 namespace Example
 {
@@ -1435,6 +1447,7 @@ namespace Example
         public void main()
         {
             
+            // Create an instance of the API class
             var apiInstance = new DefaultApi();
             var sourceAccount = rPT1Sjq2YGrBMTttX4GZHjKu9dyfzbpAYe;  // String | Source account (default to null)
             var destinationAccount = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv;  // String | Destination account (default to null)
@@ -1443,14 +1456,11 @@ namespace Example
             var fee = 5200;  // String | Fee to the ledger in drops. If this field is omitted, then `network` must be specified. (optional)  (default to null)
             var network = testnet;  // String |  Blockchain network to get the account info from. For XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint. This field is required if `fee` is not specified in order to dynamically obtain the fee from the network.  (optional)  (default to mainnet)
 
-            try
-            {
+            try {
                 // Generate a transaction
                 Object result = apiInstance.generateTransaction(sourceAccount, destinationAccount, amount, destinationTag, fee, network);
                 Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.generateTransaction: " + e.Message );
             }
         }
@@ -1463,6 +1473,7 @@ namespace Example
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+// Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $sourceAccount = rPT1Sjq2YGrBMTttX4GZHjKu9dyfzbpAYe; // String | Source account
 $destinationAccount = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; // String | Destination account
@@ -1485,6 +1496,7 @@ try {
 use keyconnectapi::Configuration;
 use keyconnectapi::DefaultApi;
 
+# Create an instance of the API class
 my $api_instance = keyconnectapi::DefaultApi->new();
 my $sourceAccount = rPT1Sjq2YGrBMTttX4GZHjKu9dyfzbpAYe; # String | Source account
 my $destinationAccount = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; # String | Destination account
@@ -1509,7 +1521,7 @@ import keyconnectapi
 from keyconnectapi.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
+# Create an instance of the API class
 api_instance = keyconnectapi.DefaultApi()
 sourceAccount = rPT1Sjq2YGrBMTttX4GZHjKu9dyfzbpAYe # String | Source account (default to null)
 destinationAccount = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv # String | Destination account (default to null)
@@ -1539,8 +1551,8 @@ pub fn main() {
 
     let mut context = DefaultApi::Context::default();
     let result = client.generateTransaction(sourceAccount, destinationAccount, amount, destinationTag, fee, network, &context).wait();
-    println!("{:?}", result);
 
+    println!("{:?}", result);
 }
 </code></pre>
                             </div>
@@ -1737,7 +1749,7 @@ Fee to the ledger in drops. If this field is omitted, then &#x60;network&#x60; m
 };
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
-                                            schema = schemaWrapper.schema;
+                                          schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -1797,7 +1809,9 @@ Fee to the ledger in drops. If this field is omitted, then &#x60;network&#x60; m
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Default-getAccountInfo-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://api.keyconnect.com/v1/blockchains/{chainId}/accounts/{accountId}?network="</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Accept: application/json"\
+ "https://api.keyconnect.app/v1/blockchains/{chainId}/accounts/{accountId}?network="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-getAccountInfo-0-java">
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
@@ -1809,13 +1823,14 @@ import java.io.File;
 import java.util.*;
 
 public class DefaultApiExample {
-
     public static void main(String[] args) {
         
+        // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
         String chainId = xrp; // String | ID of the block chain
         String accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; // String | Identifier representing the account. This is most likely the wallet address.
         String network = testnet; // String |  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint. 
+        
         try {
             BlockchainAccountInfo result = apiInstance.getAccountInfo(chainId, accountId, network);
             System.out.println(result);
@@ -1832,12 +1847,12 @@ public class DefaultApiExample {
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
 
 public class DefaultApiExample {
-
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
         String chainId = xrp; // String | ID of the block chain
         String accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; // String | Identifier representing the account. This is most likely the wallet address.
         String network = testnet; // String |  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint. 
+        
         try {
             BlockchainAccountInfo result = apiInstance.getAccountInfo(chainId, accountId, network);
             System.out.println(result);
@@ -1853,30 +1868,33 @@ public class DefaultApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Default-getAccountInfo-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *chainId = xrp; // ID of the block chain (default to null)
+                              <pre class="prettyprint"><code class="language-cpp">
+
+// Create an instance of the API class
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+String *chainId = xrp; // ID of the block chain (default to null)
 String *accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; // Identifier representing the account. This is most likely the wallet address. (default to null)
 String *network = testnet; //  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint.  (optional) (default to mainnet)
-
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Returns account / wallet information for the provided chainId representing the blockchain.
 [apiInstance getAccountInfoWith:chainId
     accountId:accountId
     network:network
               completionHandler: ^(BlockchainAccountInfo output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
 </code></pre>
                             </div>
 
                             <div class="tab-pane" id="examples-Default-getAccountInfo-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var KeyConnectApi = require('key_connect_api');
 
+// Create an instance of the API class
 var api = new KeyConnectApi.DefaultApi()
 var chainId = xrp; // {String} ID of the block chain
 var accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; // {String} Identifier representing the account. This is most likely the wallet address.
@@ -1901,9 +1919,9 @@ api.getAccountInfo(chainId, accountId, opts, callback);
                             <div class="tab-pane" id="examples-Default-getAccountInfo-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using Com.Turinglabs.Keyconnect.Api.Client.Api;
-using Com.Turinglabs.Keyconnect.Api.Client.Client;
-using Com.Turinglabs.Keyconnect.Api.Client.Model;
+using app.keyconnect.Api.Client.Api;
+using app.keyconnect.Api.Client.Client;
+using app.keyconnect.Api.Client.Model;
 
 namespace Example
 {
@@ -1912,19 +1930,17 @@ namespace Example
         public void main()
         {
             
+            // Create an instance of the API class
             var apiInstance = new DefaultApi();
             var chainId = xrp;  // String | ID of the block chain (default to null)
             var accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv;  // String | Identifier representing the account. This is most likely the wallet address. (default to null)
             var network = testnet;  // String |  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint.  (optional)  (default to mainnet)
 
-            try
-            {
+            try {
                 // Returns account / wallet information for the provided chainId representing the blockchain.
                 BlockchainAccountInfo result = apiInstance.getAccountInfo(chainId, accountId, network);
                 Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.getAccountInfo: " + e.Message );
             }
         }
@@ -1937,6 +1953,7 @@ namespace Example
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+// Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $chainId = xrp; // String | ID of the block chain
 $accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; // String | Identifier representing the account. This is most likely the wallet address.
@@ -1956,6 +1973,7 @@ try {
 use keyconnectapi::Configuration;
 use keyconnectapi::DefaultApi;
 
+# Create an instance of the API class
 my $api_instance = keyconnectapi::DefaultApi->new();
 my $chainId = xrp; # String | ID of the block chain
 my $accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; # String | Identifier representing the account. This is most likely the wallet address.
@@ -1977,7 +1995,7 @@ import keyconnectapi
 from keyconnectapi.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
+# Create an instance of the API class
 api_instance = keyconnectapi.DefaultApi()
 chainId = xrp # String | ID of the block chain (default to null)
 accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv # String | Identifier representing the account. This is most likely the wallet address. (default to null)
@@ -2001,8 +2019,8 @@ pub fn main() {
 
     let mut context = DefaultApi::Context::default();
     let result = client.getAccountInfo(chainId, accountId, network, &context).wait();
-    println!("{:?}", result);
 
+    println!("{:?}", result);
 }
 </code></pre>
                             </div>
@@ -2143,7 +2161,7 @@ Identifier representing the account. This is most likely the wallet address.
 };
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
-                                            schema = schemaWrapper.schema;
+                                          schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -2203,7 +2221,9 @@ Identifier representing the account. This is most likely the wallet address.
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Default-getAccountPayments-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://api.keyconnect.com/v1/blockchains/{chainId}/accounts/{accountId}/payments?network=&cursor="</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Accept: application/json"\
+ "https://api.keyconnect.app/v1/blockchains/{chainId}/accounts/{accountId}/payments?network=&cursor="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-getAccountPayments-0-java">
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
@@ -2215,14 +2235,15 @@ import java.io.File;
 import java.util.*;
 
 public class DefaultApiExample {
-
     public static void main(String[] args) {
         
+        // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
         String chainId = xrp; // String | 
         String accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; // String | Identifier representing the account. This is most likely the wallet address.
         String network = testnet; // String |  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint. 
         String cursor = 57112007:13; // String | Cursor representing position among pages. Pass the cursor from previous get payments response to get the next page.
+        
         try {
             BlockchainAccountPayments result = apiInstance.getAccountPayments(chainId, accountId, network, cursor);
             System.out.println(result);
@@ -2239,13 +2260,13 @@ public class DefaultApiExample {
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
 
 public class DefaultApiExample {
-
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
         String chainId = xrp; // String | 
         String accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; // String | Identifier representing the account. This is most likely the wallet address.
         String network = testnet; // String |  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint. 
         String cursor = 57112007:13; // String | Cursor representing position among pages. Pass the cursor from previous get payments response to get the next page.
+        
         try {
             BlockchainAccountPayments result = apiInstance.getAccountPayments(chainId, accountId, network, cursor);
             System.out.println(result);
@@ -2261,12 +2282,14 @@ public class DefaultApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Default-getAccountPayments-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *chainId = xrp; //  (default to null)
+                              <pre class="prettyprint"><code class="language-cpp">
+
+// Create an instance of the API class
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+String *chainId = xrp; //  (default to null)
 String *accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; // Identifier representing the account. This is most likely the wallet address. (default to null)
 String *network = testnet; //  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint.  (optional) (default to mainnet)
 String *cursor = 57112007:13; // Cursor representing position among pages. Pass the cursor from previous get payments response to get the next page. (optional) (default to null)
-
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Gets payments for a given account on a given blockchain specified by the `chainId` parameter.
 [apiInstance getAccountPaymentsWith:chainId
@@ -2274,19 +2297,20 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
     network:network
     cursor:cursor
               completionHandler: ^(BlockchainAccountPayments output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
 </code></pre>
                             </div>
 
                             <div class="tab-pane" id="examples-Default-getAccountPayments-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var KeyConnectApi = require('key_connect_api');
 
+// Create an instance of the API class
 var api = new KeyConnectApi.DefaultApi()
 var chainId = xrp; // {String} 
 var accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; // {String} Identifier representing the account. This is most likely the wallet address.
@@ -2312,9 +2336,9 @@ api.getAccountPayments(chainId, accountId, opts, callback);
                             <div class="tab-pane" id="examples-Default-getAccountPayments-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using Com.Turinglabs.Keyconnect.Api.Client.Api;
-using Com.Turinglabs.Keyconnect.Api.Client.Client;
-using Com.Turinglabs.Keyconnect.Api.Client.Model;
+using app.keyconnect.Api.Client.Api;
+using app.keyconnect.Api.Client.Client;
+using app.keyconnect.Api.Client.Model;
 
 namespace Example
 {
@@ -2323,20 +2347,18 @@ namespace Example
         public void main()
         {
             
+            // Create an instance of the API class
             var apiInstance = new DefaultApi();
             var chainId = xrp;  // String |  (default to null)
             var accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv;  // String | Identifier representing the account. This is most likely the wallet address. (default to null)
             var network = testnet;  // String |  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint.  (optional)  (default to mainnet)
             var cursor = 57112007:13;  // String | Cursor representing position among pages. Pass the cursor from previous get payments response to get the next page. (optional)  (default to null)
 
-            try
-            {
+            try {
                 // Gets payments for a given account on a given blockchain specified by the `chainId` parameter.
                 BlockchainAccountPayments result = apiInstance.getAccountPayments(chainId, accountId, network, cursor);
                 Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.getAccountPayments: " + e.Message );
             }
         }
@@ -2349,6 +2371,7 @@ namespace Example
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+// Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $chainId = xrp; // String | 
 $accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; // String | Identifier representing the account. This is most likely the wallet address.
@@ -2369,6 +2392,7 @@ try {
 use keyconnectapi::Configuration;
 use keyconnectapi::DefaultApi;
 
+# Create an instance of the API class
 my $api_instance = keyconnectapi::DefaultApi->new();
 my $chainId = xrp; # String | 
 my $accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; # String | Identifier representing the account. This is most likely the wallet address.
@@ -2391,7 +2415,7 @@ import keyconnectapi
 from keyconnectapi.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
+# Create an instance of the API class
 api_instance = keyconnectapi.DefaultApi()
 chainId = xrp # String |  (default to null)
 accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv # String | Identifier representing the account. This is most likely the wallet address. (default to null)
@@ -2417,8 +2441,8 @@ pub fn main() {
 
     let mut context = DefaultApi::Context::default();
     let result = client.getAccountPayments(chainId, accountId, network, cursor, &context).wait();
-    println!("{:?}", result);
 
+    println!("{:?}", result);
 }
 </code></pre>
                             </div>
@@ -2576,7 +2600,7 @@ Cursor representing position among pages. Pass the cursor from previous get paym
 };
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
-                                            schema = schemaWrapper.schema;
+                                          schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -2636,7 +2660,9 @@ Cursor representing position among pages. Pass the cursor from previous get paym
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Default-getAccountTransactions-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://api.keyconnect.com/v1/blockchains/{chainId}/accounts/{accountId}/transactions?network=&cursor="</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Accept: application/json"\
+ "https://api.keyconnect.app/v1/blockchains/{chainId}/accounts/{accountId}/transactions?network=&cursor="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-getAccountTransactions-0-java">
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
@@ -2648,14 +2674,15 @@ import java.io.File;
 import java.util.*;
 
 public class DefaultApiExample {
-
     public static void main(String[] args) {
         
+        // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
         String chainId = xrp; // String | 
         String accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; // String | Identifier representing the account. This is most likely the wallet address.
         String network = testnet; // String |  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint. 
         String cursor = 57112007:13; // String | Cursor representing position among pages. Pass the cursor from previous get transactions response to get the next page.
+        
         try {
             BlockchainAccountTransactions result = apiInstance.getAccountTransactions(chainId, accountId, network, cursor);
             System.out.println(result);
@@ -2672,13 +2699,13 @@ public class DefaultApiExample {
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
 
 public class DefaultApiExample {
-
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
         String chainId = xrp; // String | 
         String accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; // String | Identifier representing the account. This is most likely the wallet address.
         String network = testnet; // String |  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint. 
         String cursor = 57112007:13; // String | Cursor representing position among pages. Pass the cursor from previous get transactions response to get the next page.
+        
         try {
             BlockchainAccountTransactions result = apiInstance.getAccountTransactions(chainId, accountId, network, cursor);
             System.out.println(result);
@@ -2694,12 +2721,14 @@ public class DefaultApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Default-getAccountTransactions-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *chainId = xrp; //  (default to null)
+                              <pre class="prettyprint"><code class="language-cpp">
+
+// Create an instance of the API class
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+String *chainId = xrp; //  (default to null)
 String *accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; // Identifier representing the account. This is most likely the wallet address. (default to null)
 String *network = testnet; //  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint.  (optional) (default to mainnet)
 String *cursor = 57112007:13; // Cursor representing position among pages. Pass the cursor from previous get transactions response to get the next page. (optional) (default to null)
-
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Gets transactions for given account on a given blockchain specified by the `chainId` parameter.
 [apiInstance getAccountTransactionsWith:chainId
@@ -2707,19 +2736,20 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
     network:network
     cursor:cursor
               completionHandler: ^(BlockchainAccountTransactions output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
 </code></pre>
                             </div>
 
                             <div class="tab-pane" id="examples-Default-getAccountTransactions-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var KeyConnectApi = require('key_connect_api');
 
+// Create an instance of the API class
 var api = new KeyConnectApi.DefaultApi()
 var chainId = xrp; // {String} 
 var accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; // {String} Identifier representing the account. This is most likely the wallet address.
@@ -2745,9 +2775,9 @@ api.getAccountTransactions(chainId, accountId, opts, callback);
                             <div class="tab-pane" id="examples-Default-getAccountTransactions-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using Com.Turinglabs.Keyconnect.Api.Client.Api;
-using Com.Turinglabs.Keyconnect.Api.Client.Client;
-using Com.Turinglabs.Keyconnect.Api.Client.Model;
+using app.keyconnect.Api.Client.Api;
+using app.keyconnect.Api.Client.Client;
+using app.keyconnect.Api.Client.Model;
 
 namespace Example
 {
@@ -2756,20 +2786,18 @@ namespace Example
         public void main()
         {
             
+            // Create an instance of the API class
             var apiInstance = new DefaultApi();
             var chainId = xrp;  // String |  (default to null)
             var accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv;  // String | Identifier representing the account. This is most likely the wallet address. (default to null)
             var network = testnet;  // String |  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint.  (optional)  (default to mainnet)
             var cursor = 57112007:13;  // String | Cursor representing position among pages. Pass the cursor from previous get transactions response to get the next page. (optional)  (default to null)
 
-            try
-            {
+            try {
                 // Gets transactions for given account on a given blockchain specified by the `chainId` parameter.
                 BlockchainAccountTransactions result = apiInstance.getAccountTransactions(chainId, accountId, network, cursor);
                 Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.getAccountTransactions: " + e.Message );
             }
         }
@@ -2782,6 +2810,7 @@ namespace Example
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+// Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $chainId = xrp; // String | 
 $accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; // String | Identifier representing the account. This is most likely the wallet address.
@@ -2802,6 +2831,7 @@ try {
 use keyconnectapi::Configuration;
 use keyconnectapi::DefaultApi;
 
+# Create an instance of the API class
 my $api_instance = keyconnectapi::DefaultApi->new();
 my $chainId = xrp; # String | 
 my $accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv; # String | Identifier representing the account. This is most likely the wallet address.
@@ -2824,7 +2854,7 @@ import keyconnectapi
 from keyconnectapi.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
+# Create an instance of the API class
 api_instance = keyconnectapi.DefaultApi()
 chainId = xrp # String |  (default to null)
 accountId = rDsbeomae4FXwgQTJp9Rs64Qg9vDiTCdBv # String | Identifier representing the account. This is most likely the wallet address. (default to null)
@@ -2850,8 +2880,8 @@ pub fn main() {
 
     let mut context = DefaultApi::Context::default();
     let result = client.getAccountTransactions(chainId, accountId, network, cursor, &context).wait();
-    println!("{:?}", result);
 
+    println!("{:?}", result);
 }
 </code></pre>
                             </div>
@@ -3009,7 +3039,7 @@ Cursor representing position among pages. Pass the cursor from previous get tran
 };
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
-                                            schema = schemaWrapper.schema;
+                                          schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -3069,7 +3099,9 @@ Cursor representing position among pages. Pass the cursor from previous get tran
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Default-getBlockchainStatus-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://api.keyconnect.com/v1/blockchains/{chainId}/status?network="</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Accept: application/json"\
+ "https://api.keyconnect.app/v1/blockchains/{chainId}/status?network="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-getBlockchainStatus-0-java">
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
@@ -3081,12 +3113,13 @@ import java.io.File;
 import java.util.*;
 
 public class DefaultApiExample {
-
     public static void main(String[] args) {
         
+        // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
         String chainId = chainId_example; // String | ID of the block chain
         String network = testnet; // String | Blockchain network to get the status from.
+        
         try {
             BlockchainStatus result = apiInstance.getBlockchainStatus(chainId, network);
             System.out.println(result);
@@ -3103,11 +3136,11 @@ public class DefaultApiExample {
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
 
 public class DefaultApiExample {
-
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
         String chainId = chainId_example; // String | ID of the block chain
         String network = testnet; // String | Blockchain network to get the status from.
+        
         try {
             BlockchainStatus result = apiInstance.getBlockchainStatus(chainId, network);
             System.out.println(result);
@@ -3123,28 +3156,31 @@ public class DefaultApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Default-getBlockchainStatus-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *chainId = chainId_example; // ID of the block chain (default to null)
-String *network = testnet; // Blockchain network to get the status from. (optional) (default to null)
+                              <pre class="prettyprint"><code class="language-cpp">
 
+// Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
+String *chainId = chainId_example; // ID of the block chain (default to null)
+String *network = testnet; // Blockchain network to get the status from. (optional) (default to null)
 
 // Returns status of the provided chainId.
 [apiInstance getBlockchainStatusWith:chainId
     network:network
               completionHandler: ^(BlockchainStatus output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
 </code></pre>
                             </div>
 
                             <div class="tab-pane" id="examples-Default-getBlockchainStatus-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var KeyConnectApi = require('key_connect_api');
 
+// Create an instance of the API class
 var api = new KeyConnectApi.DefaultApi()
 var chainId = chainId_example; // {String} ID of the block chain
 var opts = {
@@ -3168,9 +3204,9 @@ api.getBlockchainStatus(chainId, opts, callback);
                             <div class="tab-pane" id="examples-Default-getBlockchainStatus-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using Com.Turinglabs.Keyconnect.Api.Client.Api;
-using Com.Turinglabs.Keyconnect.Api.Client.Client;
-using Com.Turinglabs.Keyconnect.Api.Client.Model;
+using app.keyconnect.Api.Client.Api;
+using app.keyconnect.Api.Client.Client;
+using app.keyconnect.Api.Client.Model;
 
 namespace Example
 {
@@ -3179,18 +3215,16 @@ namespace Example
         public void main()
         {
             
+            // Create an instance of the API class
             var apiInstance = new DefaultApi();
             var chainId = chainId_example;  // String | ID of the block chain (default to null)
             var network = testnet;  // String | Blockchain network to get the status from. (optional)  (default to null)
 
-            try
-            {
+            try {
                 // Returns status of the provided chainId.
                 BlockchainStatus result = apiInstance.getBlockchainStatus(chainId, network);
                 Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.getBlockchainStatus: " + e.Message );
             }
         }
@@ -3203,6 +3237,7 @@ namespace Example
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+// Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $chainId = chainId_example; // String | ID of the block chain
 $network = testnet; // String | Blockchain network to get the status from.
@@ -3221,6 +3256,7 @@ try {
 use keyconnectapi::Configuration;
 use keyconnectapi::DefaultApi;
 
+# Create an instance of the API class
 my $api_instance = keyconnectapi::DefaultApi->new();
 my $chainId = chainId_example; # String | ID of the block chain
 my $network = testnet; # String | Blockchain network to get the status from.
@@ -3241,7 +3277,7 @@ import keyconnectapi
 from keyconnectapi.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
+# Create an instance of the API class
 api_instance = keyconnectapi.DefaultApi()
 chainId = chainId_example # String | ID of the block chain (default to null)
 network = testnet # String | Blockchain network to get the status from. (optional) (default to null)
@@ -3263,8 +3299,8 @@ pub fn main() {
 
     let mut context = DefaultApi::Context::default();
     let result = client.getBlockchainStatus(chainId, network, &context).wait();
-    println!("{:?}", result);
 
+    println!("{:?}", result);
 }
 </code></pre>
                             </div>
@@ -3382,7 +3418,7 @@ Blockchain network to get the status from.
 };
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
-                                            schema = schemaWrapper.schema;
+                                          schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -3442,7 +3478,9 @@ Blockchain network to get the status from.
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Default-getBlockchainsStatus-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://api.keyconnect.com/v1/blockchains/status"</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Accept: application/json"\
+ "https://api.keyconnect.app/v1/blockchains/status"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-getBlockchainsStatus-0-java">
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
@@ -3454,10 +3492,11 @@ import java.io.File;
 import java.util.*;
 
 public class DefaultApiExample {
-
     public static void main(String[] args) {
         
+        // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
+        
         try {
             AvailableBlockchains result = apiInstance.getBlockchainsStatus();
             System.out.println(result);
@@ -3474,9 +3513,9 @@ public class DefaultApiExample {
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
 
 public class DefaultApiExample {
-
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
+        
         try {
             AvailableBlockchains result = apiInstance.getBlockchainsStatus();
             System.out.println(result);
@@ -3493,24 +3532,27 @@ public class DefaultApiExample {
   </div> -->
                             <div class="tab-pane" id="examples-Default-getBlockchainsStatus-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">
+
+// Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Returns list of available blockchains and their statuses.
 [apiInstance getBlockchainsStatusWithCompletionHandler: 
               ^(AvailableBlockchains output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
 </code></pre>
                             </div>
 
                             <div class="tab-pane" id="examples-Default-getBlockchainsStatus-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var KeyConnectApi = require('key_connect_api');
 
+// Create an instance of the API class
 var api = new KeyConnectApi.DefaultApi()
 var callback = function(error, data, response) {
   if (error) {
@@ -3529,9 +3571,9 @@ api.getBlockchainsStatus(callback);
                             <div class="tab-pane" id="examples-Default-getBlockchainsStatus-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using Com.Turinglabs.Keyconnect.Api.Client.Api;
-using Com.Turinglabs.Keyconnect.Api.Client.Client;
-using Com.Turinglabs.Keyconnect.Api.Client.Model;
+using app.keyconnect.Api.Client.Api;
+using app.keyconnect.Api.Client.Client;
+using app.keyconnect.Api.Client.Model;
 
 namespace Example
 {
@@ -3540,16 +3582,14 @@ namespace Example
         public void main()
         {
             
+            // Create an instance of the API class
             var apiInstance = new DefaultApi();
 
-            try
-            {
+            try {
                 // Returns list of available blockchains and their statuses.
                 AvailableBlockchains result = apiInstance.getBlockchainsStatus();
                 Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.getBlockchainsStatus: " + e.Message );
             }
         }
@@ -3562,6 +3602,7 @@ namespace Example
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+// Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 
 try {
@@ -3578,6 +3619,7 @@ try {
 use keyconnectapi::Configuration;
 use keyconnectapi::DefaultApi;
 
+# Create an instance of the API class
 my $api_instance = keyconnectapi::DefaultApi->new();
 
 eval { 
@@ -3596,7 +3638,7 @@ import keyconnectapi
 from keyconnectapi.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
+# Create an instance of the API class
 api_instance = keyconnectapi.DefaultApi()
 
 try: 
@@ -3614,8 +3656,8 @@ pub fn main() {
 
     let mut context = DefaultApi::Context::default();
     let result = client.getBlockchainsStatus(&context).wait();
-    println!("{:?}", result);
 
+    println!("{:?}", result);
 }
 </code></pre>
                             </div>
@@ -3676,7 +3718,7 @@ pub fn main() {
 };
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
-                                            schema = schemaWrapper.schema;
+                                          schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -3736,7 +3778,9 @@ pub fn main() {
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Default-getFee-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://api.keyconnect.com/v1/blockchains/{chainId}/fee?network="</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Accept: application/json"\
+ "https://api.keyconnect.app/v1/blockchains/{chainId}/fee?network="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-getFee-0-java">
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
@@ -3748,12 +3792,13 @@ import java.io.File;
 import java.util.*;
 
 public class DefaultApiExample {
-
     public static void main(String[] args) {
         
+        // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
         String chainId = chainId_example; // String | ID of the block chain
         String network = testnet; // String | Blockchain network to get the status from.
+        
         try {
             BlockchainFee result = apiInstance.getFee(chainId, network);
             System.out.println(result);
@@ -3770,11 +3815,11 @@ public class DefaultApiExample {
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
 
 public class DefaultApiExample {
-
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
         String chainId = chainId_example; // String | ID of the block chain
         String network = testnet; // String | Blockchain network to get the status from.
+        
         try {
             BlockchainFee result = apiInstance.getFee(chainId, network);
             System.out.println(result);
@@ -3790,28 +3835,31 @@ public class DefaultApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Default-getFee-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *chainId = chainId_example; // ID of the block chain (default to null)
-String *network = testnet; // Blockchain network to get the status from. (optional) (default to null)
+                              <pre class="prettyprint"><code class="language-cpp">
 
+// Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
+String *chainId = chainId_example; // ID of the block chain (default to null)
+String *network = testnet; // Blockchain network to get the status from. (optional) (default to null)
 
 // Returns fee of the provided chainId.
 [apiInstance getFeeWith:chainId
     network:network
               completionHandler: ^(BlockchainFee output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
 </code></pre>
                             </div>
 
                             <div class="tab-pane" id="examples-Default-getFee-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var KeyConnectApi = require('key_connect_api');
 
+// Create an instance of the API class
 var api = new KeyConnectApi.DefaultApi()
 var chainId = chainId_example; // {String} ID of the block chain
 var opts = {
@@ -3835,9 +3883,9 @@ api.getFee(chainId, opts, callback);
                             <div class="tab-pane" id="examples-Default-getFee-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using Com.Turinglabs.Keyconnect.Api.Client.Api;
-using Com.Turinglabs.Keyconnect.Api.Client.Client;
-using Com.Turinglabs.Keyconnect.Api.Client.Model;
+using app.keyconnect.Api.Client.Api;
+using app.keyconnect.Api.Client.Client;
+using app.keyconnect.Api.Client.Model;
 
 namespace Example
 {
@@ -3846,18 +3894,16 @@ namespace Example
         public void main()
         {
             
+            // Create an instance of the API class
             var apiInstance = new DefaultApi();
             var chainId = chainId_example;  // String | ID of the block chain (default to null)
             var network = testnet;  // String | Blockchain network to get the status from. (optional)  (default to null)
 
-            try
-            {
+            try {
                 // Returns fee of the provided chainId.
                 BlockchainFee result = apiInstance.getFee(chainId, network);
                 Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.getFee: " + e.Message );
             }
         }
@@ -3870,6 +3916,7 @@ namespace Example
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+// Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $chainId = chainId_example; // String | ID of the block chain
 $network = testnet; // String | Blockchain network to get the status from.
@@ -3888,6 +3935,7 @@ try {
 use keyconnectapi::Configuration;
 use keyconnectapi::DefaultApi;
 
+# Create an instance of the API class
 my $api_instance = keyconnectapi::DefaultApi->new();
 my $chainId = chainId_example; # String | ID of the block chain
 my $network = testnet; # String | Blockchain network to get the status from.
@@ -3908,7 +3956,7 @@ import keyconnectapi
 from keyconnectapi.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
+# Create an instance of the API class
 api_instance = keyconnectapi.DefaultApi()
 chainId = chainId_example # String | ID of the block chain (default to null)
 network = testnet # String | Blockchain network to get the status from. (optional) (default to null)
@@ -3930,8 +3978,8 @@ pub fn main() {
 
     let mut context = DefaultApi::Context::default();
     let result = client.getFee(chainId, network, &context).wait();
-    println!("{:?}", result);
 
+    println!("{:?}", result);
 }
 </code></pre>
                             </div>
@@ -4049,7 +4097,7 @@ Blockchain network to get the status from.
 };
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
-                                            schema = schemaWrapper.schema;
+                                          schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -4109,7 +4157,9 @@ Blockchain network to get the status from.
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Default-getServerStatus-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://api.keyconnect.com/v1/server/status"</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Accept: application/json"\
+ "https://api.keyconnect.app/v1/server/status"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-getServerStatus-0-java">
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
@@ -4121,10 +4171,11 @@ import java.io.File;
 import java.util.*;
 
 public class DefaultApiExample {
-
     public static void main(String[] args) {
         
+        // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
+        
         try {
             ServerStatusResponse result = apiInstance.getServerStatus();
             System.out.println(result);
@@ -4141,9 +4192,9 @@ public class DefaultApiExample {
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
 
 public class DefaultApiExample {
-
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
+        
         try {
             ServerStatusResponse result = apiInstance.getServerStatus();
             System.out.println(result);
@@ -4160,24 +4211,27 @@ public class DefaultApiExample {
   </div> -->
                             <div class="tab-pane" id="examples-Default-getServerStatus-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">
+
+// Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Returns status of the server.
 [apiInstance getServerStatusWithCompletionHandler: 
               ^(ServerStatusResponse output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
 </code></pre>
                             </div>
 
                             <div class="tab-pane" id="examples-Default-getServerStatus-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var KeyConnectApi = require('key_connect_api');
 
+// Create an instance of the API class
 var api = new KeyConnectApi.DefaultApi()
 var callback = function(error, data, response) {
   if (error) {
@@ -4196,9 +4250,9 @@ api.getServerStatus(callback);
                             <div class="tab-pane" id="examples-Default-getServerStatus-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using Com.Turinglabs.Keyconnect.Api.Client.Api;
-using Com.Turinglabs.Keyconnect.Api.Client.Client;
-using Com.Turinglabs.Keyconnect.Api.Client.Model;
+using app.keyconnect.Api.Client.Api;
+using app.keyconnect.Api.Client.Client;
+using app.keyconnect.Api.Client.Model;
 
 namespace Example
 {
@@ -4207,16 +4261,14 @@ namespace Example
         public void main()
         {
             
+            // Create an instance of the API class
             var apiInstance = new DefaultApi();
 
-            try
-            {
+            try {
                 // Returns status of the server.
                 ServerStatusResponse result = apiInstance.getServerStatus();
                 Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.getServerStatus: " + e.Message );
             }
         }
@@ -4229,6 +4281,7 @@ namespace Example
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+// Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 
 try {
@@ -4245,6 +4298,7 @@ try {
 use keyconnectapi::Configuration;
 use keyconnectapi::DefaultApi;
 
+# Create an instance of the API class
 my $api_instance = keyconnectapi::DefaultApi->new();
 
 eval { 
@@ -4263,7 +4317,7 @@ import keyconnectapi
 from keyconnectapi.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
+# Create an instance of the API class
 api_instance = keyconnectapi.DefaultApi()
 
 try: 
@@ -4281,8 +4335,8 @@ pub fn main() {
 
     let mut context = DefaultApi::Context::default();
     let result = client.getServerStatus(&context).wait();
-    println!("{:?}", result);
 
+    println!("{:?}", result);
 }
 </code></pre>
                             </div>
@@ -4343,7 +4397,7 @@ pub fn main() {
 };
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
-                                            schema = schemaWrapper.schema;
+                                          schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -4403,7 +4457,9 @@ pub fn main() {
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Default-getTransaction-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://api.keyconnect.com/v1/blockchains/{chainId}/transactions/{hash}?network="</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Accept: application/json"\
+ "https://api.keyconnect.app/v1/blockchains/{chainId}/transactions/{hash}?network="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-getTransaction-0-java">
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
@@ -4415,13 +4471,14 @@ import java.io.File;
 import java.util.*;
 
 public class DefaultApiExample {
-
     public static void main(String[] args) {
         
+        // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
         String chainId = chainId_example; // String | 
         String hash = hash_example; // String | Hash of the transaction to lookup
         String network = testnet; // String |  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint. 
+        
         try {
             BlockchainAccountTransaction result = apiInstance.getTransaction(chainId, hash, network);
             System.out.println(result);
@@ -4438,12 +4495,12 @@ public class DefaultApiExample {
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
 
 public class DefaultApiExample {
-
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
         String chainId = chainId_example; // String | 
         String hash = hash_example; // String | Hash of the transaction to lookup
         String network = testnet; // String |  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint. 
+        
         try {
             BlockchainAccountTransaction result = apiInstance.getTransaction(chainId, hash, network);
             System.out.println(result);
@@ -4459,30 +4516,33 @@ public class DefaultApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Default-getTransaction-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *chainId = chainId_example; //  (default to null)
+                              <pre class="prettyprint"><code class="language-cpp">
+
+// Create an instance of the API class
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+String *chainId = chainId_example; //  (default to null)
 String *hash = hash_example; // Hash of the transaction to lookup (default to null)
 String *network = testnet; //  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint.  (optional) (default to mainnet)
-
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Get a single transaction by its hash on the specified `chainId`.
 [apiInstance getTransactionWith:chainId
     hash:hash
     network:network
               completionHandler: ^(BlockchainAccountTransaction output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
 </code></pre>
                             </div>
 
                             <div class="tab-pane" id="examples-Default-getTransaction-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var KeyConnectApi = require('key_connect_api');
 
+// Create an instance of the API class
 var api = new KeyConnectApi.DefaultApi()
 var chainId = chainId_example; // {String} 
 var hash = hash_example; // {String} Hash of the transaction to lookup
@@ -4507,9 +4567,9 @@ api.getTransaction(chainId, hash, opts, callback);
                             <div class="tab-pane" id="examples-Default-getTransaction-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using Com.Turinglabs.Keyconnect.Api.Client.Api;
-using Com.Turinglabs.Keyconnect.Api.Client.Client;
-using Com.Turinglabs.Keyconnect.Api.Client.Model;
+using app.keyconnect.Api.Client.Api;
+using app.keyconnect.Api.Client.Client;
+using app.keyconnect.Api.Client.Model;
 
 namespace Example
 {
@@ -4518,19 +4578,17 @@ namespace Example
         public void main()
         {
             
+            // Create an instance of the API class
             var apiInstance = new DefaultApi();
             var chainId = chainId_example;  // String |  (default to null)
             var hash = hash_example;  // String | Hash of the transaction to lookup (default to null)
             var network = testnet;  // String |  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint.  (optional)  (default to mainnet)
 
-            try
-            {
+            try {
                 // Get a single transaction by its hash on the specified `chainId`.
                 BlockchainAccountTransaction result = apiInstance.getTransaction(chainId, hash, network);
                 Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.getTransaction: " + e.Message );
             }
         }
@@ -4543,6 +4601,7 @@ namespace Example
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+// Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $chainId = chainId_example; // String | 
 $hash = hash_example; // String | Hash of the transaction to lookup
@@ -4562,6 +4621,7 @@ try {
 use keyconnectapi::Configuration;
 use keyconnectapi::DefaultApi;
 
+# Create an instance of the API class
 my $api_instance = keyconnectapi::DefaultApi->new();
 my $chainId = chainId_example; # String | 
 my $hash = hash_example; # String | Hash of the transaction to lookup
@@ -4583,7 +4643,7 @@ import keyconnectapi
 from keyconnectapi.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
+# Create an instance of the API class
 api_instance = keyconnectapi.DefaultApi()
 chainId = chainId_example # String |  (default to null)
 hash = hash_example # String | Hash of the transaction to lookup (default to null)
@@ -4607,8 +4667,8 @@ pub fn main() {
 
     let mut context = DefaultApi::Context::default();
     let result = client.getTransaction(chainId, hash, network, &context).wait();
-    println!("{:?}", result);
 
+    println!("{:?}", result);
 }
 </code></pre>
                             </div>
@@ -4746,7 +4806,7 @@ Hash of the transaction to lookup
 };
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
-                                            schema = schemaWrapper.schema;
+                                          schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
@@ -4806,7 +4866,10 @@ Hash of the transaction to lookup
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Default-submitTransaction-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "https://api.keyconnect.com/v1/blockchains/{chainId}/transactions?network="</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+ -H "Accept: application/json"\
+ -H "Content-Type: application/json"\
+ "https://api.keyconnect.app/v1/blockchains/{chainId}/transactions?network="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-submitTransaction-0-java">
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
@@ -4818,13 +4881,14 @@ import java.io.File;
 import java.util.*;
 
 public class DefaultApiExample {
-
     public static void main(String[] args) {
         
+        // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
         String chainId = chainId_example; // String | 
         String network = testnet; // String |  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint. 
         SubmitTransactionRequest submitTransactionRequest = ; // SubmitTransactionRequest | 
+        
         try {
             SubmitTransactionResult result = apiInstance.submitTransaction(chainId, network, submitTransactionRequest);
             System.out.println(result);
@@ -4841,12 +4905,12 @@ public class DefaultApiExample {
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
 
 public class DefaultApiExample {
-
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
         String chainId = chainId_example; // String | 
         String network = testnet; // String |  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint. 
         SubmitTransactionRequest submitTransactionRequest = ; // SubmitTransactionRequest | 
+        
         try {
             SubmitTransactionResult result = apiInstance.submitTransaction(chainId, network, submitTransactionRequest);
             System.out.println(result);
@@ -4862,30 +4926,33 @@ public class DefaultApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Default-submitTransaction-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *chainId = chainId_example; //  (default to null)
+                              <pre class="prettyprint"><code class="language-cpp">
+
+// Create an instance of the API class
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+String *chainId = chainId_example; //  (default to null)
 String *network = testnet; //  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint.  (optional) (default to mainnet)
 SubmitTransactionRequest *submitTransactionRequest = ; //  (optional)
-
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Submit a transaction to the blockchain
 [apiInstance submitTransactionWith:chainId
     network:network
     submitTransactionRequest:submitTransactionRequest
               completionHandler: ^(SubmitTransactionResult output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
 </code></pre>
                             </div>
 
                             <div class="tab-pane" id="examples-Default-submitTransaction-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var KeyConnectApi = require('key_connect_api');
 
+// Create an instance of the API class
 var api = new KeyConnectApi.DefaultApi()
 var chainId = chainId_example; // {String} 
 var opts = {
@@ -4910,9 +4977,9 @@ api.submitTransaction(chainId, opts, callback);
                             <div class="tab-pane" id="examples-Default-submitTransaction-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using Com.Turinglabs.Keyconnect.Api.Client.Api;
-using Com.Turinglabs.Keyconnect.Api.Client.Client;
-using Com.Turinglabs.Keyconnect.Api.Client.Model;
+using app.keyconnect.Api.Client.Api;
+using app.keyconnect.Api.Client.Client;
+using app.keyconnect.Api.Client.Model;
 
 namespace Example
 {
@@ -4921,19 +4988,17 @@ namespace Example
         public void main()
         {
             
+            // Create an instance of the API class
             var apiInstance = new DefaultApi();
             var chainId = chainId_example;  // String |  (default to null)
             var network = testnet;  // String |  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint.  (optional)  (default to mainnet)
             var submitTransactionRequest = new SubmitTransactionRequest(); // SubmitTransactionRequest |  (optional) 
 
-            try
-            {
+            try {
                 // Submit a transaction to the blockchain
                 SubmitTransactionResult result = apiInstance.submitTransaction(chainId, network, submitTransactionRequest);
                 Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.submitTransaction: " + e.Message );
             }
         }
@@ -4946,6 +5011,7 @@ namespace Example
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+// Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $chainId = chainId_example; // String | 
 $network = testnet; // String |  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint. 
@@ -4965,6 +5031,7 @@ try {
 use keyconnectapi::Configuration;
 use keyconnectapi::DefaultApi;
 
+# Create an instance of the API class
 my $api_instance = keyconnectapi::DefaultApi->new();
 my $chainId = chainId_example; # String | 
 my $network = testnet; # String |  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint. 
@@ -4986,7 +5053,7 @@ import keyconnectapi
 from keyconnectapi.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
+# Create an instance of the API class
 api_instance = keyconnectapi.DefaultApi()
 chainId = chainId_example # String |  (default to null)
 network = testnet # String |  Blockchain network to get the account info from. For example, for XRP this would be one of (testnet/devnet/mainnet). More information regarding what environments are available can be obtained from /v1/blockchains/{chainId}/status endpoint.  (optional) (default to mainnet)
@@ -5010,8 +5077,8 @@ pub fn main() {
 
     let mut context = DefaultApi::Context::default();
     let result = client.submitTransaction(chainId, network, submitTransactionRequest, &context).wait();
-    println!("{:?}", result);
 
+    println!("{:?}", result);
 }
 </code></pre>
                             </div>
@@ -5074,9 +5141,10 @@ $(document).ready(function() {
     }
   }
 };
-  var schema = findNode('schema', schemaWrapper).schema;
+
+  var schema = findNode('schema',schemaWrapper).schema;
   if (!schema) {
-      schema = schemaWrapper.schema;
+    schema = schemaWrapper.schema;
   }
   if (schema.$ref != null) {
     schema = defsParser.$refs.get(schema.$ref);
@@ -5171,7 +5239,7 @@ $(document).ready(function() {
 };
                                         var schema = findNode('schema',schemaWrapper).schema;
                                         if (!schema) {
-                                            schema = schemaWrapper.schema;
+                                          schema = schemaWrapper.schema;
                                         }
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
