@@ -23,7 +23,7 @@ section:
         <pre class="prettyprint" style="background:#282840;border-radius:10px"><code class="language-java">
         DefaultApi apiInstance = new DefaultApi(
         <br>
-        <span class="u-pl-3">new ApiClient().setBasePath("https://www.keyconnect.app")</span>
+        <span class="u-pl-3">new ApiClient().setBasePath("https://api.keyconnect.app")</span>
         <br>
         );
         <br><br>
