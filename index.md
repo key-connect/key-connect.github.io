@@ -2,7 +2,7 @@
 # Page settings
 layout: homepage # Choose layout: "default", "homepage" or "documentation-archive"
 title: KeyConnect # Define a title of your page
-description: KeyConnect API provides a decentralised single point of access to all blockchains. # Define a description of your page
+description: KeyConnect API provides a single, decentralised and unified gateway to access all blockchains
 keywords: blockchain api btc bitcoin ethereum eth ether xrp ledger # Define keywords for search engines
 ogTitle: KeyConnect
 ogDescription: KeyConnect API provides a decentralised single point of access to all blockchains.
