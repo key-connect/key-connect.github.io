@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>KeyConnect API</title>
+  <title>Key Connect API</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="UTF-8" />
@@ -1261,7 +1261,7 @@ ul.nav-tabs {
       <div id="content">
         <div id="project">
           <div class="pull-left">
-            <h1>KeyConnect API</h1>
+            <h1>Key Connect API</h1>
           </div>
           <div class="clearfix"></div>
         </div>
@@ -1271,7 +1271,7 @@ ul.nav-tabs {
               <div class="app-desc">Version: 1.0.0</div>
             <hr>
             <div id="app-description" class="app-desc">
-                Blockchain access made easy
+                Blockchain access made simple
             </div>
           </div>
         </div>
@@ -1316,10 +1316,10 @@ ul.nav-tabs {
  "https://api.keyconnect.app/v1/blockchains/xrp/generator/payment?sourceAccount=&destinationAccount=&destinationTag=&amount=&fee=&network="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-generateTransaction-0-java">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.model.*;
-import org.openapitools.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import app.keyconnect.api.client.*;
+import app.keyconnect.api.client.auth.*;
+import app.keyconnect.api.client.model.*;
+import app.keyconnect.api.client.api.DefaultApi;
 
 import java.io.File;
 import java.util.*;
@@ -1349,7 +1349,7 @@ public class DefaultApiExample {
                           </div>
 
                           <div class="tab-pane" id="examples-Default-generateTransaction-0-android">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import app.keyconnect.api.client.api.DefaultApi;
 
 public class DefaultApiExample {
     public static void main(String[] args) {
@@ -1814,10 +1814,10 @@ Fee to the ledger in drops. If this field is omitted, then &#x60;network&#x60; m
  "https://api.keyconnect.app/v1/blockchains/{chainId}/accounts/{accountId}?network="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-getAccountInfo-0-java">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.model.*;
-import org.openapitools.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import app.keyconnect.api.client.*;
+import app.keyconnect.api.client.auth.*;
+import app.keyconnect.api.client.model.*;
+import app.keyconnect.api.client.api.DefaultApi;
 
 import java.io.File;
 import java.util.*;
@@ -1844,7 +1844,7 @@ public class DefaultApiExample {
                           </div>
 
                           <div class="tab-pane" id="examples-Default-getAccountInfo-0-android">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import app.keyconnect.api.client.api.DefaultApi;
 
 public class DefaultApiExample {
     public static void main(String[] args) {
@@ -2226,10 +2226,10 @@ Identifier representing the account. This is most likely the wallet address.
  "https://api.keyconnect.app/v1/blockchains/{chainId}/accounts/{accountId}/payments?network=&cursor="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-getAccountPayments-0-java">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.model.*;
-import org.openapitools.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import app.keyconnect.api.client.*;
+import app.keyconnect.api.client.auth.*;
+import app.keyconnect.api.client.model.*;
+import app.keyconnect.api.client.api.DefaultApi;
 
 import java.io.File;
 import java.util.*;
@@ -2257,7 +2257,7 @@ public class DefaultApiExample {
                           </div>
 
                           <div class="tab-pane" id="examples-Default-getAccountPayments-0-android">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import app.keyconnect.api.client.api.DefaultApi;
 
 public class DefaultApiExample {
     public static void main(String[] args) {
@@ -2665,10 +2665,10 @@ Cursor representing position among pages. Pass the cursor from previous get paym
  "https://api.keyconnect.app/v1/blockchains/{chainId}/accounts/{accountId}/transactions?network=&cursor="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-getAccountTransactions-0-java">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.model.*;
-import org.openapitools.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import app.keyconnect.api.client.*;
+import app.keyconnect.api.client.auth.*;
+import app.keyconnect.api.client.model.*;
+import app.keyconnect.api.client.api.DefaultApi;
 
 import java.io.File;
 import java.util.*;
@@ -2696,7 +2696,7 @@ public class DefaultApiExample {
                           </div>
 
                           <div class="tab-pane" id="examples-Default-getAccountTransactions-0-android">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import app.keyconnect.api.client.api.DefaultApi;
 
 public class DefaultApiExample {
     public static void main(String[] args) {
@@ -3104,10 +3104,10 @@ Cursor representing position among pages. Pass the cursor from previous get tran
  "https://api.keyconnect.app/v1/blockchains/{chainId}/status?network="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-getBlockchainStatus-0-java">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.model.*;
-import org.openapitools.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import app.keyconnect.api.client.*;
+import app.keyconnect.api.client.auth.*;
+import app.keyconnect.api.client.model.*;
+import app.keyconnect.api.client.api.DefaultApi;
 
 import java.io.File;
 import java.util.*;
@@ -3133,7 +3133,7 @@ public class DefaultApiExample {
                           </div>
 
                           <div class="tab-pane" id="examples-Default-getBlockchainStatus-0-android">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import app.keyconnect.api.client.api.DefaultApi;
 
 public class DefaultApiExample {
     public static void main(String[] args) {
@@ -3483,10 +3483,10 @@ Blockchain network to get the status from.
  "https://api.keyconnect.app/v1/blockchains/status"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-getBlockchainsStatus-0-java">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.model.*;
-import org.openapitools.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import app.keyconnect.api.client.*;
+import app.keyconnect.api.client.auth.*;
+import app.keyconnect.api.client.model.*;
+import app.keyconnect.api.client.api.DefaultApi;
 
 import java.io.File;
 import java.util.*;
@@ -3510,7 +3510,7 @@ public class DefaultApiExample {
                           </div>
 
                           <div class="tab-pane" id="examples-Default-getBlockchainsStatus-0-android">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import app.keyconnect.api.client.api.DefaultApi;
 
 public class DefaultApiExample {
     public static void main(String[] args) {
@@ -3783,10 +3783,10 @@ pub fn main() {
  "https://api.keyconnect.app/v1/blockchains/{chainId}/fee?network="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-getFee-0-java">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.model.*;
-import org.openapitools.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import app.keyconnect.api.client.*;
+import app.keyconnect.api.client.auth.*;
+import app.keyconnect.api.client.model.*;
+import app.keyconnect.api.client.api.DefaultApi;
 
 import java.io.File;
 import java.util.*;
@@ -3812,7 +3812,7 @@ public class DefaultApiExample {
                           </div>
 
                           <div class="tab-pane" id="examples-Default-getFee-0-android">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import app.keyconnect.api.client.api.DefaultApi;
 
 public class DefaultApiExample {
     public static void main(String[] args) {
@@ -4162,10 +4162,10 @@ Blockchain network to get the status from.
  "https://api.keyconnect.app/v1/server/status"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-getServerStatus-0-java">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.model.*;
-import org.openapitools.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import app.keyconnect.api.client.*;
+import app.keyconnect.api.client.auth.*;
+import app.keyconnect.api.client.model.*;
+import app.keyconnect.api.client.api.DefaultApi;
 
 import java.io.File;
 import java.util.*;
@@ -4189,7 +4189,7 @@ public class DefaultApiExample {
                           </div>
 
                           <div class="tab-pane" id="examples-Default-getServerStatus-0-android">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import app.keyconnect.api.client.api.DefaultApi;
 
 public class DefaultApiExample {
     public static void main(String[] args) {
@@ -4462,10 +4462,10 @@ pub fn main() {
  "https://api.keyconnect.app/v1/blockchains/{chainId}/transactions/{hash}?network="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-getTransaction-0-java">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.model.*;
-import org.openapitools.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import app.keyconnect.api.client.*;
+import app.keyconnect.api.client.auth.*;
+import app.keyconnect.api.client.model.*;
+import app.keyconnect.api.client.api.DefaultApi;
 
 import java.io.File;
 import java.util.*;
@@ -4492,7 +4492,7 @@ public class DefaultApiExample {
                           </div>
 
                           <div class="tab-pane" id="examples-Default-getTransaction-0-android">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import app.keyconnect.api.client.api.DefaultApi;
 
 public class DefaultApiExample {
     public static void main(String[] args) {
@@ -4872,10 +4872,10 @@ Hash of the transaction to lookup
  "https://api.keyconnect.app/v1/blockchains/{chainId}/transactions?network="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-submitTransaction-0-java">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.model.*;
-import org.openapitools.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import app.keyconnect.api.client.*;
+import app.keyconnect.api.client.auth.*;
+import app.keyconnect.api.client.model.*;
+import app.keyconnect.api.client.api.DefaultApi;
 
 import java.io.File;
 import java.util.*;
@@ -4902,7 +4902,7 @@ public class DefaultApiExample {
                           </div>
 
                           <div class="tab-pane" id="examples-Default-submitTransaction-0-android">
-                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import app.keyconnect.api.client.api.DefaultApi;
 
 public class DefaultApiExample {
     public static void main(String[] args) {
@@ -5271,11 +5271,11 @@ $(document).ready(function() {
           <div id="footer">
             <div id="api-_footer">
               <p>Suggestions, contact, support and error reporting;
-                  <div class="app-desc">Information URL: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a></div>
+                  <div class="app-desc">Information URL: <a href="https://www.manthanhd.com">https://www.manthanhd.com</a></div>
                   <div class="app-desc">Contact Info: <a href="manthan@keyconnect.app">manthan@keyconnect.app</a></div>
               </p>
-                <div class="license-info">All rights reserved</div>
-                <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+                <div class="license-info">The Apache License, Version 2.0</div>
+                <div class="license-url">http://www.apache.org/licenses/LICENSE-2.0.txt</div>
             </div>
           </div>
       </div>
