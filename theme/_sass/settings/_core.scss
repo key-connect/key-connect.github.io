@@ -20,6 +20,7 @@ $color-primary: $color-theme !default;
  */
 
 $color-white: #fff !default;
+$color-black: #262626 !default;
 $color-gray-30: #f7f8f9 !default;
 $color-gray-50: #e1e2e3 !default;
 $color-gray-100: #bbb !default;
@@ -29,7 +30,7 @@ $color-gray-300: #575c61 !default;
  * Base
  */
 
-$color-base: $color-gray-300 !default;
+$color-base: $color-black !default;
 
 /**
  * Callouts
@@ -45,13 +46,12 @@ $color-danger: #e54d42 !default;
  */
 
 $colors: (
-	'primary': $color-primary,
-	'white': $color-white,
-	'gray-30': $color-gray-30,
-	'gray-300': $color-gray-300,
+  "black": $color-black,
+  "primary": $color-primary,
+  "white": $color-white,
+  "gray-30": $color-gray-30,
+  "gray-300": $color-gray-300,
 ) !default;
-
-
 
 /* Typography
    ========================================================================== */
@@ -63,8 +63,8 @@ $colors: (
 $font-size-base: 16px !default;
 $font-size-base-mobile: 14px !default;
 $line-height-base: 1.75 !default;
-$font-family-base: 'IBM Plex Sans', sans-serif !default;
-$font-family-monospace: 'IBM Plex Mono', monospace !default;
+$font-family-base: "Helvetica Neue", sans-serif !default;
+$font-family-monospace: "IBM Plex Mono", monospace !default;
 
 /**
  * Weights
@@ -74,6 +74,7 @@ $font-weight-regular: 400 !default;
 $font-weight-medium: 500 !default;
 $font-weight-semibold: 600 !default;
 $font-weight-bold: 700 !default;
+$font-weight-xbold: 900 !default;
 
 /**
  * Headings
@@ -86,8 +87,6 @@ $font-size-h4: 1.5rem !default;
 $font-size-h5: 1.375rem !default;
 $font-size-h6: 1.25rem !default;
 
-
-
 /* Spacing
    ========================================================================== */
 
@@ -99,21 +98,19 @@ $font-size-h6: 1.25rem !default;
 $spacer-base: 1.25rem !default;
 
 $spacers: (
-	'0': 0,
-	'1': .625rem,
-	'2': 1.25rem,
-	'3': 1.875rem,
-	'4': 2.5rem,
-	'5': 3.125rem,
-	'6': 3.75rem,
-	'8': 5rem,
-	'10': 6.25rem,
-	'13': 8.125rem,
-	'16': 10rem,
-	'17': 10.625rem,
+  "0": 0,
+  "1": 0.625rem,
+  "2": 1.25rem,
+  "3": 1.875rem,
+  "4": 2.5rem,
+  "5": 3.125rem,
+  "6": 3.75rem,
+  "8": 5rem,
+  "10": 6.25rem,
+  "13": 8.125rem,
+  "16": 10rem,
+  "17": 10.625rem,
 ) !default;
-
-
 
 /* Breakpoints
    ========================================================================== */
@@ -124,14 +121,12 @@ $spacers: (
  */
 
 $breakpoints: (
-	'xs': 0,
-	'sm': 576px,
-	'md': 768px,
-	'lg': 992px,
-	'xl': 1230px,
+  "xs": 0,
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1230px,
 ) !default;
-
-
 
 /* Grid
    ========================================================================== */

@@ -1,20 +1,19 @@
-{% include header.html %}
+{% include header.html style='alternative' %}
 
 {% if page.title or page.description %}
-	<div class="u-bg-gray-30 u-pt-16 u-pb-10">
+	<div class="u-bg-primary u-pt-16 u-pb-10">
 		<div class="o-container">
-			<div class="o-row">
-				<div class="o-col-11@lg o-col-7@xl u-mx-auto@xl">
+			<div class="o-row u-justify-center">
+				<div class="o-col-10@lg o-col-10@xl">
 					{% if page.title %}
-						<h1 class="u-text-lg u-text-xl@sm">{{ page.title }}</h1>
+						<h1 class="u-text-white u-text-lg u-text-xl@sm">{{ page.title }}</h1>
 					{% endif %}
 					{% if page.description %}
-            <img align="right" src="{% if jekyll.environment == 'production' %}{{ site.dox.baseurl }}{% endif %}/theme/assets/images/layout/{{ page.image }}" alt="" title="" width="120" />
             <div class="u-h6">
-              <p>{{ page.description }}</p>
+              <p class="u-text-white">{{ page.description }}</p>
             </div>
           {% endif %}
-          <a href="{{ page.button.url }}" class="c-btn c-btn--bordered-gray c-btn--lg u-h6 u-mr-1 u-mb-2">
+          <a href="{{ page.button.url }}" class="c-btn c-btn--bordered-white c-btn--md u-h6 u-mr-1 u-mb-2">
             {{ page.button.label }}
             <div class="c-btn__icon">
               <i class="o-icon o-icon--{{ page.button.icon }}"></i>
@@ -29,8 +28,8 @@
 {% if page.section %}
 <div class="u-bg-gray-30 u-pb-4">
 	<div class="o-container">
-				<div class="o-row">
-					<div class="o-col u-mr-auto">
+				<div class="o-row u-justify-center">
+					<div class="o-col-10 u-mt-8">
 						{{ page.section.html }}
 					</div>
 				</div>

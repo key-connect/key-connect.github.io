@@ -7,9 +7,9 @@
 {% endif %}
 
 {% if include.indent == true %}
-	{% assign column_classes = 'o-col-10@lg o-col-8@xl o-offset-1@lg' %}
+	{% assign column_classes = 'o-col-8@lg o-col-10@xl' %}
 {% else %}
-	{% assign column_classes = 'o-col-8@lg o-col-7@xl' %}
+	{% assign column_classes = 'o-col-8@lg o-col-10@xl' %}
 {% endif %}
 
 {% if page.hero.title or page.hero.text or page.hero.buttons or page.hero.download_link %}
@@ -19,7 +19,7 @@
 		<div class="c-hero {{ include.classes }}">
 	{% endif %}
 		<div class="o-container">
-			<div class="o-row">
+			<div class="o-row u-justify-center">
 				<div class="{{ column_classes }}">
 					{% if page.hero.title %}
 						<h2 class="{{ title_classes }}">{{ page.hero.title }}</h2>
@@ -35,27 +35,27 @@
 								{% if button.external_url == true %}
 									{% if button.style == 'filled' %}
 										{% if button.icon %}
-											<a href="{{ button.url }}" class="c-btn c-btn--white c-btn--lg u-h6 u-mr-1 u-mb-2">
+											<a href="{{ button.url }}" class="c-btn c-btn--white c-btn--md u-h6 u-mr-1 u-mb-2">
 												{{ button.label }}
 												<div class="c-btn__icon">
 													<i class="o-icon o-icon--{{ button.icon }}"></i>
 												</div>
 											</a>
 										{% else %}
-											<a href="{{ button.url }}" class="c-btn c-btn--white c-btn--lg u-h6 u-mr-1 u-mb-2">
+											<a href="{{ button.url }}" class="c-btn c-btn--white c-btn--md u-h6 u-mr-1 u-mb-2">
 												{{ button.label }}
 											</a>
 										{% endif %}
 									{% elsif button.style == 'bordered' %}
 										{% if button.icon %}
-											<a href="{{ button.url }}" class="c-btn c-btn--bordered-white c-btn--lg u-h6 u-mr-1 u-mb-2">
+											<a href="{{ button.url }}" class="c-btn c-btn--bordered-white c-btn--md u-h6 u-mr-1 u-mb-2">
 												{{ button.label }}
 												<div class="c-btn__icon">
 													<i class="o-icon o-icon--{{ button.icon }}"></i>
 												</div>
 											</a>
 										{% else %}
-											<a href="{{ button.url }}" class="c-btn c-btn--bordered-white c-btn--lg u-h6 u-mr-1 u-mb-2">
+											<a href="{{ button.url }}" class="c-btn c-btn--bordered-white c-btn--md u-h6 u-mr-1 u-mb-2">
 												{{ button.label }}
 											</a>
 										{% endif %}
@@ -63,27 +63,27 @@
 								{% else %}
 									{% if button.style == 'filled' %}
 										{% if button.icon %}
-											<a href="{% if jekyll.environment == 'production' %}{{ site.dox.baseurl }}{% endif %}{{ button.url }}" class="c-btn c-btn--white c-btn--lg u-h6 u-mr-1 u-mb-2">
+											<a href="{% if jekyll.environment == 'production' %}{{ site.dox.baseurl }}{% endif %}{{ button.url }}" class="c-btn c-btn--white c-btn--md u-h6 u-mr-1 u-mb-2">
 												{{ button.label }}
 												<div class="c-btn__icon">
 													<i class="o-icon o-icon--{{ button.icon }}"></i>
 												</div>
 											</a>
 										{% else %}
-											<a href="{% if jekyll.environment == 'production' %}{{ site.dox.baseurl }}{% endif %}{{ button.url }}" class="c-btn c-btn--white c-btn--lg u-h6 u-mr-1 u-mb-2">
+											<a href="{% if jekyll.environment == 'production' %}{{ site.dox.baseurl }}{% endif %}{{ button.url }}" class="c-btn c-btn--white c-btn--md u-h6 u-mr-1 u-mb-2">
 												{{ button.label }}
 											</a>
 										{% endif %}
 									{% elsif button.style == 'bordered' %}
 										{% if button.icon %}
-											<a href="{% if jekyll.environment == 'production' %}{{ site.dox.baseurl }}{% endif %}{{ button.url }}" class="c-btn c-btn--bordered-white c-btn--lg u-h6 u-mr-1 u-mb-2">
+											<a href="{% if jekyll.environment == 'production' %}{{ site.dox.baseurl }}{% endif %}{{ button.url }}" class="c-btn c-btn--bordered-white c-btn--md u-h6 u-mr-1 u-mb-2">
 												{{ button.label }}
 												<div class="c-btn__icon">
 													<i class="o-icon o-icon--{{ button.icon }}"></i>
 												</div>
 											</a>
 										{% else %}
-											<a href="{% if jekyll.environment == 'production' %}{{ site.dox.baseurl }}{% endif %}{{ button.url }}" class="c-btn c-btn--bordered-white c-btn--lg u-h6 u-mr-1 u-mb-2">
+											<a href="{% if jekyll.environment == 'production' %}{{ site.dox.baseurl }}{% endif %}{{ button.url }}" class="c-btn c-btn--bordered-white c-btn--md u-h6 u-mr-1 u-mb-2">
 												{{ button.label }}
 											</a>
 										{% endif %}

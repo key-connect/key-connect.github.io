@@ -12,12 +12,10 @@
  */
 
 @each $color-key, $color-value in $colors {
-	.u-text-#{$color-key} {
-		color: $color-value !important;
-	}
+  .u-text-#{$color-key} {
+    color: $color-value !important;
+  }
 }
-
-
 
 /* Text Sizing
    ========================================================================== */
@@ -27,60 +25,58 @@
  */
 
 @each $breakpoint-key, $breakpoint-value in $breakpoints {
-	@if $breakpoint-key == xs {
-		.u-text-xxl {
-			font-size: 3.5rem !important;
-		}
+  @if $breakpoint-key == xs {
+    .u-text-xxl {
+      font-size: 3.5rem !important;
+    }
 
-		.u-text-xl {
-			font-size: 3.125rem !important;
-		}
+    .u-text-xl {
+      font-size: 3.125rem !important;
+    }
 
-		.u-text-lg {
-			font-size: 3rem !important;
-		}
+    .u-text-lg {
+      font-size: 3rem !important;
+    }
 
-		.u-text-md {
-			font-size: 1.125rem !important;
-		}
+    .u-text-md {
+      font-size: 1.125rem !important;
+    }
 
-		.u-text-base {
-			font-size: $font-size-base !important;
-		}
+    .u-text-base {
+      font-size: $font-size-base !important;
+    }
 
-		.u-text-sm {
-			font-size: .875rem !important;
-		}
-	} @else {
-		@include media-breakpoint-up(#{$breakpoint-key}) {
-			.u-text-xxl\@#{$breakpoint-key} {
-				font-size: 3.5rem !important;
-			}
+    .u-text-sm {
+      font-size: 0.875rem !important;
+    }
+  } @else {
+    @include media-breakpoint-up(#{$breakpoint-key}) {
+      .u-text-xxl\@#{$breakpoint-key} {
+        font-size: 3.5rem !important;
+      }
 
-			.u-text-xl\@#{$breakpoint-key} {
-				font-size: 3.125rem !important;
-			}
+      .u-text-xl\@#{$breakpoint-key} {
+        font-size: 3.125rem !important;
+      }
 
-			.u-text-lg\@#{$breakpoint-key} {
-				font-size: 3rem !important;
-			}
+      .u-text-lg\@#{$breakpoint-key} {
+        font-size: 3rem !important;
+      }
 
-			.u-text-md\@#{$breakpoint-key} {
-				font-size: 1.375rem !important;
-			}
+      .u-text-md\@#{$breakpoint-key} {
+        font-size: 1.375rem !important;
+      }
 
-			.u-text-base\@#{$breakpoint-key} {
-				font-size: $font-size-base !important;
-			}
+      .u-text-base\@#{$breakpoint-key} {
+        font-size: $font-size-base !important;
+      }
 
-			.u-text-sm\@#{$breakpoint-key} {
-				font-size: 1rem !important;
-			}
-		}
-	}
+      .u-text-sm\@#{$breakpoint-key} {
+        font-size: 1rem !important;
+      }
+    }
+  }
 }
-
-
 
 /* Text Alignment
    ========================================================================== */
@@ -90,36 +86,34 @@
  */
 
 @each $breakpoint-key, $breakpoint-value in $breakpoints {
-	@if $breakpoint-key == xs {
-		.u-text-center {
-			text-align: center !important;
-		}
+  @if $breakpoint-key == xs {
+    .u-text-center {
+      text-align: center !important;
+    }
 
-		.u-text-left {
-			text-align: left !important;
-		}
+    .u-text-left {
+      text-align: left !important;
+    }
 
-		.u-text-right {
-			text-align: right !important;
-		}
-	} @else {
-		@include media-breakpoint-up(#{$breakpoint-key}) {
-			.u-text-center\@#{$breakpoint-key} {
-				text-align: center !important;
-			}
+    .u-text-right {
+      text-align: right !important;
+    }
+  } @else {
+    @include media-breakpoint-up(#{$breakpoint-key}) {
+      .u-text-center\@#{$breakpoint-key} {
+        text-align: center !important;
+      }
 
-			.u-text-left\@#{$breakpoint-key} {
-				text-align: left !important;
-			}
+      .u-text-left\@#{$breakpoint-key} {
+        text-align: left !important;
+      }
 
-			.u-text-right\@#{$breakpoint-key} {
-				text-align: right !important;
-			}
-		}
-	}
+      .u-text-right\@#{$breakpoint-key} {
+        text-align: right !important;
+      }
+    }
+  }
 }
-
-
 
 /* Style and Decoration
    ========================================================================== */
@@ -129,18 +123,16 @@
  */
 
 .u-italic {
-	font-style: italic !important;
+  font-style: italic !important;
 }
 
 .u-roman {
-	font-style: normal !important;
+  font-style: normal !important;
 }
 
 .u-uppercase {
-	text-transform: uppercase !important;
+  text-transform: uppercase !important;
 }
-
-
 
 /* Font Weight
    ========================================================================== */
@@ -150,9 +142,13 @@
  */
 
 .u-font-medium {
-	font-weight: $font-weight-medium !important;
+  font-weight: $font-weight-medium !important;
 }
 
 .u-font-bold {
-	font-weight: $font-weight-bold !important;
+  font-weight: $font-weight-bold !important;
+}
+
+.u-font-xbold {
+  font-weight: $font-weight-xbold !important;
 }
