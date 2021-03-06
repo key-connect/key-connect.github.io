@@ -9,20 +9,20 @@ dox:
       text: #
       image: logo.png
     nav:
-      - item_name: SDK
-        item_url: /sdk
+      - item_name: API Docs
+        item_url: https://www.keyconnect.app/api-docs/index.html
       - item_name: Server
         item_url: /server
     cta:
-      label: Documentation
-      url: https://www.keyconnect.app/api-docs/index.html
-      external_url: true
+      label: SDK
+      url: /documentation/java-sdk
+      external_url: false
       icon: book-open
   footer:
     logo:
-      text: KeyConnect
+      text: Key Connect
       image:
-    text: Copyright &copy; 2021. - KeyConnect <br>All rights reserved.
+    text: Copyright &copy; 2021. - Key Connect <br>All rights reserved.
   google_analytics:
     tracking_code: # Add your Google Analytics tracking code to activate Google Analytics
   comments:
