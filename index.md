@@ -2,17 +2,17 @@
 # Page settings
 layout: homepage # Choose layout: "default", "homepage" or "documentation-archive"
 title: Key Connect # Define a title of your page
-description: KeyConnect API provides a single and unified gateway to access all blockchains
+description: Key Connect API provides a single and unified gateway to access all blockchains
 keywords: blockchain api btc bitcoin ethereum eth ether xrp ledger # Define keywords for search engines
-ogTitle: KeyConnect
-ogDescription: Access all blockchains from a single place. KeyConnect API provides a single point of access to all blockchains.
+ogTitle: Key Connect
+ogDescription: Access all blockchains from a single place. Key Connect API provides a single point of access to all blockchains.
 ogImage: og_homepage.png
 ogUrl: /
 
 # Hero section
 hero:
   title: Access all blockchains </br> from a single place
-  text: KeyConnect API provides a single point of access to all blockchains.
+  text: Key Connect API provides a single point of access to all blockchains.
   background_image: # Paste image URL to display image in background of hero section
   buttons:
     # Choose from 266 icons in "Feather" icon set, list of all icons is available here - https://feathericons.com
