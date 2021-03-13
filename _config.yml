@@ -9,13 +9,13 @@ dox:
       text: #
       image: logo.png
     nav:
-      - item_name: API Docs
-        item_url: https://www.keyconnect.app/api-docs/index.html
+      - item_name: API
+        item_url: /api-docs/index.html
       - item_name: Server
         item_url: /server
     cta:
-      label: SDK
-      url: /documentation/java-sdk
+      label: Documentation
+      url: /documentation
       external_url: false
       icon: book-open
   footer:
