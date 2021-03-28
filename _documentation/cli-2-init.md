@@ -46,7 +46,7 @@ The following blockchains are supported at the moment. Thus, only those types of
 1. Ethereum (eth)
 2. XRP (xrp)
 
-The `new` command allows you to create a new wallet. You need to specify the blockchain of the wallet (example: `-c eth`) and a user-friendly name (example: `--name "my wallet").
+The `new` command allows you to create a new wallet. You need to specify the blockchain of the wallet (example: `-c eth`) and a user-friendly name (example: `--name "my wallet"`).
 
 ```shell
 $ kc new -c eth --name "my eth wallet"
