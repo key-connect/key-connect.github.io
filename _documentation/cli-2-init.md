@@ -98,3 +98,23 @@ eth ===
 0 my eth wallet 0x3b4c95397684ab7ebadce6e268189e8447ad5800 ETH 0E-18
 ```
 
+#### Funding wallets
+
+For mainnet, you can use the wallet address printed in the console to receive funds from your other wallets or an exchange. However, you can use the `fund` command to fund wallets in some test networks. The funding API takes a blockchain ID (eg `-c xrp`), network (`-n testnet`) and the wallet name or address. For local wallets you can specify the name of the wallet directly (`--name "my xrp wallet"`), or else you can specify the address (`-a rU8...cZJ`).
+
+```shell
+$ kc fund -c xrp --name "my xrp wallet"  -n testnet
+Wallet password:
+
+Loading wallet...
+[main] INFO org.bitcoinj.crypto.MnemonicCode - PBKDF2 took 120.9 ms
+Funding request sent. This may take a few minutes depending on traffic.
+
+$ kc wallets -c xrp --balances -n testnet
+Wallet password:
+
+Loading wallet...
+[main] INFO org.bitcoinj.crypto.MnemonicCode - PBKDF2 took 114.3 ms
+xrp ===
+0 my xrp wallet rU8jSipHoU4SXkHkAFueRW3CVcdfiz2cZJ XRP 1000.000000000000000000
+```
